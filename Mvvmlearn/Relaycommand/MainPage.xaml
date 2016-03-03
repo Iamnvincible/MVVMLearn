@@ -11,8 +11,9 @@
         <StackPanel VerticalAlignment="Center">
 
             <Button Name="btncommand" Command="{Binding TestCommand}" CommandParameter="{Binding Path=Value,ElementName=sld}" Content="点我" HorizontalAlignment="Center"></Button>
-            <Slider Name="sld" Value="40"></Slider>
+            <Slider Name="sld" Value="{Binding elvalue,Mode=TwoWay}"></Slider>
             <TextBox Name="value" Text="{Binding ElementName=sld, Path=Value,Mode=TwoWay}"></TextBox>
+            <Ellipse Name="el" Width="{Binding ElementName=sld,Path=Value}" Height="{Binding ElementName=sld,Path=Value}" Fill="Blue"></Ellipse>
         </StackPanel>
     </Grid>
 </Page>

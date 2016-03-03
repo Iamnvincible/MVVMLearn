@@ -11,12 +11,16 @@ namespace Relaycommand
     public class MainViewModel
     {
         public ICommand TestCommand { get; set; }
+        public int elvalue
+        {
+            get; set;
+        }
         public MainViewModel()
         {
             // TestCommand = new RelayCommand();
             TestCommand = new RelayCommand(async para => 
             {
-                await new MessageDialog("你好世界"+para).ShowAsync();
+                await new MessageDialog("你好世界"+para+elvalue).ShowAsync();
             });
         }
     }
