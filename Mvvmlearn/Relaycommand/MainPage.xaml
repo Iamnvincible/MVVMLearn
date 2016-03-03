@@ -18,7 +18,7 @@
             <Ellipse Name="el" Width="{Binding ElementName=sld,Path=Value}" Height="{Binding ElementName=sld,Path=Value}" Fill="Blue"></Ellipse>
             <CheckBox Content="checkbox">
                 <Interactivity:Interaction.Behaviors>
-                    <Core:EventTriggerBehavior x:Name="EventTriggerBehavior" EventName="Check">
+                    <Core:EventTriggerBehavior x:Name="EventTriggerBehavior" EventName="Checked">
                         <Core:InvokeCommandAction Command="{Binding TestCommand}" CommandParameter="{Binding Path=Value,ElementName=sld}"></Core:InvokeCommandAction>
                     </Core:EventTriggerBehavior>
                 </Interactivity:Interaction.Behaviors>
