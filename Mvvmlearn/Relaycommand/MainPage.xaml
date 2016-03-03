@@ -5,6 +5,8 @@
     xmlns:local="using:Relaycommand"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:Interactivity="using:Microsoft.Xaml.Interactivity" 
+    xmlns:Core="using:Microsoft.Xaml.Interactions.Core"
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
@@ -14,6 +16,13 @@
             <Slider Name="sld" Value="{Binding elvalue,Mode=TwoWay}"></Slider>
             <TextBox Name="value" Text="{Binding ElementName=sld, Path=Value,Mode=TwoWay}"></TextBox>
             <Ellipse Name="el" Width="{Binding ElementName=sld,Path=Value}" Height="{Binding ElementName=sld,Path=Value}" Fill="Blue"></Ellipse>
+            <CheckBox Content="checkbox">
+                <Interactivity:Interaction.Behaviors>
+                    <Core:EventTriggerBehavior x:Name="EventTriggerBehavior" EventName="Check">
+                        <Core:InvokeCommandAction Command="{Binding TestCommand}" CommandParameter="{Binding Path=Value,ElementName=sld}"></Core:InvokeCommandAction>
+                    </Core:EventTriggerBehavior>
+                </Interactivity:Interaction.Behaviors>
+            </CheckBox>
         </StackPanel>
     </Grid>
 </Page>
