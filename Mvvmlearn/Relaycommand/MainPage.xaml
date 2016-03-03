@@ -8,6 +8,11 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Button Name="btncommand" Command="{Binding TestCommand}" Content="点我" HorizontalAlignment="Center"></Button>
+        <StackPanel VerticalAlignment="Center">
+
+            <Button Name="btncommand" Command="{Binding TestCommand}" CommandParameter="{Binding Path=Value,ElementName=sld}" Content="点我" HorizontalAlignment="Center"></Button>
+            <Slider Name="sld" Value="40"></Slider>
+            <TextBox Name="value" Text="{Binding ElementName=sld, Path=Value,Mode=TwoWay}"></TextBox>
+        </StackPanel>
     </Grid>
 </Page>

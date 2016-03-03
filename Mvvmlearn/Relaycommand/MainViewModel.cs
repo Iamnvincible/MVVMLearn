@@ -16,7 +16,7 @@ namespace Relaycommand
             // TestCommand = new RelayCommand();
             TestCommand = new RelayCommand(async para => 
             {
-                await new MessageDialog("你好世界").ShowAsync();
+                await new MessageDialog("你好世界"+para).ShowAsync();
             });
         }
     }
