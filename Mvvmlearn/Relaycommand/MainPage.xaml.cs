@@ -22,9 +22,12 @@ namespace Relaycommand
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        MainViewModel mvm;
         public MainPage()
         {
             this.InitializeComponent();
+            mvm = new MainViewModel();
+            this.DataContext = mvm;
         }
     }
 }
