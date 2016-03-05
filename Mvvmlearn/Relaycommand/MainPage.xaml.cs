@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -28,6 +29,14 @@ namespace Relaycommand
             this.InitializeComponent();
             mvm = new MainViewModel();
             this.DataContext = mvm;
+        }
+
+
+
+        private async void StackPanel_ManipulationInertiaStarting(object sender, ManipulationInertiaStartingRoutedEventArgs e)
+        {
+            await new MessageDialog("你摸我！").ShowAsync();
+
         }
     }
 }

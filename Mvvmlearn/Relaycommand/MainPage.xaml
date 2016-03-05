@@ -10,11 +10,12 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <StackPanel VerticalAlignment="Center">
+        <StackPanel VerticalAlignment="Center" Background="AliceBlue">
 
             <Button Name="btncommand" Command="{Binding TestCommand}" CommandParameter="{Binding Path=Value,ElementName=sld}" Content="点我" HorizontalAlignment="Center"></Button>
             <Slider Name="sld" Value="{Binding elvalue,Mode=TwoWay}"></Slider>
             <TextBox Name="value" Text="{Binding ElementName=sld, Path=Value,Mode=TwoWay}"></TextBox>
+            <TextBlock  Text="hhhhhhhhhhhhhhhhhhhhhhhhhhhh" local:ManipulationStartedBehavior.ManipulationStartedCommand="{Binding ManipulationCommand}" ManipulationMode="All" Height=" 50"></TextBlock>
             <Ellipse Name="el" Width="{Binding ElementName=sld,Path=Value}" Height="{Binding ElementName=sld,Path=Value}" Fill="Blue"></Ellipse>
             <CheckBox Content="checkbox">
                 <Interactivity:Interaction.Behaviors>
