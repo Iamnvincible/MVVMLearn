@@ -13,6 +13,7 @@ namespace Relaycommand
     {
         public ICommand TestCommand { get; set; }
         public ICommand ManipulationCommand { get; set; }
+        public EventHandler UIStoryboard { get; set; }
         public int elvalue
         {
             get; set;
@@ -20,9 +21,13 @@ namespace Relaycommand
         public MainViewModel()
         {
             // TestCommand = new RelayCommand();
-            TestCommand = new RelayCommand(async para =>
+            TestCommand = new RelayCommand( para =>
             {
-                await new MessageDialog("你好世界" + para + elvalue).ShowAsync();
+                //await new MessageDialog("你好世界" + para + elvalue).ShowAsync();
+                if (UIStoryboard!=null)
+                {
+                    UIStoryboard.Invoke(this, new EventArgs());
+                }
             });
             ManipulationCommand = new RelayCommand(async para =>
               {
@@ -30,6 +35,7 @@ namespace Relaycommand
                   Point p = (Point)para;
                   if (p != null)
                       await new MessageDialog("你好" + p.X + "|" + p.Y).ShowAsync();
+                 
               });
         }
     }

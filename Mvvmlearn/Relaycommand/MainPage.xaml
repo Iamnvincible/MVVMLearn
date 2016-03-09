@@ -9,6 +9,12 @@
     xmlns:Core="using:Microsoft.Xaml.Interactions.Core"
     mc:Ignorable="d">
 
+    <Page.Resources>
+        <Storyboard x:Name="story1">
+            <DoubleAnimation Storyboard.TargetName="el" Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:3">
+            </DoubleAnimation>
+        </Storyboard>
+    </Page.Resources>
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <StackPanel VerticalAlignment="Center" Background="AliceBlue">
 

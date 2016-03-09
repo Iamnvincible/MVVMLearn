@@ -28,6 +28,10 @@ namespace Relaycommand
         {
             this.InitializeComponent();
             mvm = new MainViewModel();
+            mvm.UIStoryboard += (s, e) =>
+            {
+                story1.Begin();
+            };
             this.DataContext = mvm;
         }
 
