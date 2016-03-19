@@ -42,5 +42,10 @@ namespace Relaycommand
             await new MessageDialog("你摸我！").ShowAsync();
 
         }
+
+        private void TextBlock_ManipulationStarting(object sender, ManipulationStartingRoutedEventArgs e)
+        {
+
+        }
     }
 }
