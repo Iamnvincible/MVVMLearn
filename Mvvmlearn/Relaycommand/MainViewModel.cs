@@ -20,11 +20,11 @@ namespace Relaycommand
         public ICommand TestCommand { get; set; }
         public ICommand ManipulationCommand { get; set; }
         public ICommand GetImageCommand { get; set; }
-        public EventHandler UIStoryboard { get; set; }
-        private string imguri;
+        public EventHandler UiStoryboard { get; set; }
+        private string _imguri;
 
         //public string imguri { get { }; set; } = "ms-appx:///Assets/StoreLogo.png";
-        public int elvalue
+        public int Elvalue
         {
             get; set;
         }
@@ -33,13 +33,13 @@ namespace Relaycommand
         {
             get
             {
-                return imguri;
+                return _imguri;
             }
 
             set
             {
-                imguri = value;
-                PropertyChanged(this, new PropertyChangedEventArgs("Imguri"));
+                _imguri = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Imguri)));
             }
         }
 
@@ -47,21 +47,15 @@ namespace Relaycommand
         {
             // TestCommand = new RelayCommand();
             TestCommand = new RelayCommand(para =>
-           {
-               //await new MessageDialog("你好世界" + para + elvalue).ShowAsync();
-               if (UIStoryboard != null)
-               {
-                   UIStoryboard.Invoke(this, new EventArgs());
-               }
-           });
+            {
+                //await new MessageDialog("你好世界" + para + elvalue).ShowAsync();
+                UiStoryboard?.Invoke(this, new EventArgs());
+            });
             ManipulationCommand = new RelayCommand(async para =>
-              {
-
-                  Point p = (Point)para;
-                  if (p != null)
-                      await new MessageDialog("你好" + p.X + "|" + p.Y).ShowAsync();
-
-              });
+            {
+                Point p = (Point)para;
+                await new MessageDialog("你好" + p.X + "|" + p.Y).ShowAsync();
+            });
             GetImageCommand = new RelayCommand(async para =>
               {
                   string uri = "https://pic4.zhimg.com/6b84ba24b698381d87d831cb01b201bb_m.png";
@@ -71,7 +65,6 @@ namespace Relaycommand
                   //await DownloadImage(uri);
               });
         }
-
         public event PropertyChangedEventHandler PropertyChanged;
 
         public static async Task DownloadAndScale(string outfileName, string downloadUriString, Size scaleSize)
@@ -89,9 +82,11 @@ namespace Relaycommand
                     await memoryStream.FlushAsync();//刷新
                     var decoder = await Windows.Graphics.Imaging.BitmapDecoder.CreateAsync(memoryStream);//解密文件流
                     //确定图片大小
-                    var bt = new Windows.Graphics.Imaging.BitmapTransform();
-                    bt.ScaledWidth = (uint)scaleSize.Width;
-                    bt.ScaledHeight = (uint)scaleSize.Height;
+                    var bt = new BitmapTransform
+                    {
+                        ScaledWidth = (uint) scaleSize.Width,
+                        ScaledHeight = (uint) scaleSize.Height
+                    };
                     //得到像素数值
                     var pixelProvider = await decoder.GetPixelDataAsync(
                         decoder.BitmapPixelFormat, decoder.BitmapAlphaMode, bt,
@@ -143,7 +138,7 @@ namespace Relaycommand
                 await new MessageDialog("succeed").ShowAsync();
 
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 await new MessageDialog("failed").ShowAsync();
 

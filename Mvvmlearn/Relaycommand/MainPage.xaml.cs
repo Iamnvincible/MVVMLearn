@@ -28,7 +28,7 @@ namespace Relaycommand
         {
             this.InitializeComponent();
             mvm = new MainViewModel();
-            mvm.UIStoryboard += (s, e) =>
+            mvm.UiStoryboard += (s, e) =>
             {
                 story1.Begin();
             };
