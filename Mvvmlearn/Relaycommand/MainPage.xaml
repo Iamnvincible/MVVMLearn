@@ -30,6 +30,9 @@
                     </Core:EventTriggerBehavior>
                 </Interactivity:Interaction.Behaviors>
             </CheckBox>
+            <TextBlock Text="Hahah" ManipulationStarting="TextBlock_ManipulationStarting">
+                
+            </TextBlock>
         </StackPanel>
     </Grid>
 </Page>
