@@ -30,6 +30,8 @@
                     </Core:EventTriggerBehavior>
                 </Interactivity:Interaction.Behaviors>
             </CheckBox>
+            <Button Name="getimg" Command="{Binding GetImageCommand}" Content="下载图片" HorizontalAlignment="Center"></Button>
+            <Image Source="{Binding Imguri}" Height="100" Width="100" HorizontalAlignment="Center"></Image>
         </StackPanel>
     </Grid>
 </Page>
