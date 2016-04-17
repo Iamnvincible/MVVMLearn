@@ -1,0 +1,44 @@
+﻿<Page
+    x:Class="BindingBasic.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:BindingBasic"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewmodel="using:BindingBasic.ViewModel"
+    xmlns:converter="using:BindingBasic.ValueConverters"
+    xmlns:model="using:BindingBasic.Model"
+    mc:Ignorable="d"
+>
+    <Page.Resources>
+        <converter:MyValueConverter x:Key="MyValueConverter"></converter:MyValueConverter>
+    </Page.Resources>
+
+
+    <Grid Name="headergrid" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="0">
+            <TextBlock Text="{x:Bind ViewModel.Text,Mode=OneWay}"/>
+            <Button Content="改变文本" Click="{x:Bind ViewModel.Button_Click}" ></Button>
+                <ListView ItemsSource="{Binding Stu}" Header="运行时绑定">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Name}"></TextBlock>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+        </StackPanel>
+        <Grid Grid.Column="1">
+            <ListView ItemsSource="{x:Bind ViewModel.Stu}" Header="编译时绑定">
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="model:Student">
+                        <TextBlock Text="{x:Bind Name}"></TextBlock>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+    </Grid>
+</Page>

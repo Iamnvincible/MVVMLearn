@@ -1,0 +1,34 @@
+﻿<Page xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+      xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+      x:Class="MvvmLight1.MainPage"
+    Background="Wheat"
+      mc:Ignorable="d"
+      DataContext="{Binding Main, Source={StaticResource Locator}}"
+      >
+
+    <Page.Resources>
+        <Storyboard x:Name="Story1">
+            <DoubleAnimation Storyboard.TargetName="spin" Storyboard.TargetProperty="Opacity" From="0" To=" 1" Duration="0:0:3"></DoubleAnimation>
+        </Storyboard>
+    </Page.Resources>
+    <Grid Background="Wheat">
+        <StackPanel HorizontalAlignment="Center">
+            <Ellipse Name="spin" Fill="IndianRed" Height="100" Width="100"></Ellipse>
+            <Button Name="op" Content="start" Command="{Binding Story1Command}"></Button>
+            <Button Name="na" Content="navigate" Command="{Binding NaviCommand}" CommandParameter="{Binding ElementName=message,Path=Text}"></Button>
+            <TextBox Name="message" Text="Hello world"></TextBox>
+            <Button Name="show" Content="showmessage" Command="{Binding ShowDialogCommand}" CommandParameter="{Binding ElementName=message,Path=Text}"></Button>
+            <CheckBox Name="check" Content="点我">
+                <interactivity:Interaction.Behaviors>
+                    <core:EventTriggerBehavior x:Name="EventTriggerBehavior" EventName="Click">
+                        <core:InvokeCommandAction Command="{Binding CheckedCommand}" CommandParameter="{Binding ElementName=check, Path=IsChecked}"></core:InvokeCommandAction>
+                    </core:EventTriggerBehavior>
+                </interactivity:Interaction.Behaviors>
+            </CheckBox>
+        </StackPanel>
+    </Grid>
+</Page>

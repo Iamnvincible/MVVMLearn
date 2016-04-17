@@ -19,7 +19,7 @@ namespace MVVMSample.Model
                 if (value != null)
                 {
                     dataTestString = value;
-                    OnPropertyChanged("DataTestString");
+                    OnPropertyChanged(nameof(DataTestString));
                 }
             }
         }
