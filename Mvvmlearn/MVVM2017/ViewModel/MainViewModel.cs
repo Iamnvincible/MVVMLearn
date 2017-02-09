@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using GalaSoft.MvvmLight;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
+using Microsoft.Practices.ServiceLocation;
+using GalaSoft.MvvmLight.Views;
 
 namespace MVVM2017.ViewModel
 {
@@ -20,6 +22,7 @@ namespace MVVM2017.ViewModel
             set { Set(ref _isactive, value); }
         }
         public ICommand ChangeProgressCommand { get; set; }
+        public ICommand GotoNextCommand { get; set; }
         private void ChangeProgress()
         {
             IsActive = !IsActive;
@@ -28,6 +31,11 @@ namespace MVVM2017.ViewModel
         {
             IsActive = true;
             ChangeProgressCommand = new RelayCommand(ChangeProgress);
+            GotoNextCommand = new RelayCommand(() =>
+              {
+                  var navigationService = ServiceLocator.Current.GetInstance<INavigationService>();
+                  navigationService.NavigateTo("PageTwo");
+              });
         }
     }
 }
